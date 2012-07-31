@@ -27,15 +27,14 @@
 
 
   <!-- the hbox that contains our chat windows -->
-  <vbox id="browser-bottombox">
-    <toolbar id="pinnedchat-toolbar" 
+  <vbox id="appcontent">
+    <toolbar id="pinnedchat-toolbar" layer="true"
       mousethrough="always"
-      style="
-        -moz-appearance:none;transparent:true;opacity:1;margin-right:240px;margin-top:-32px;"
+      style="-moz-appearance:none;transparent:true;opacity:1;margin-top:-24px;"
       >
       <hbox pack="end" id="pinnedchats" flex="1"
         mousethrough="always"
-        style="height:32px;width:100%;opacity:1.0;padding-left:8px;-moz-box-pack:end"
+        style="height:24px;width:100%;opacity:1.0;padding-left:8px;-moz-box-pack:end"
       >
       </hbox>
     </toolbar>

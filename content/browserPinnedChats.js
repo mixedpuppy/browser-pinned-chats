@@ -47,9 +47,23 @@ function addPinnedChat() {
 
   var browser = window.document.createElementNS(XUL_NS, "browser");
   //browser.setAttribute("src", "http://www.google.com")
+  browser.setAttribute("flex", "1")
   browser.setAttribute("src", "resource://browserpinnedchats/content/demo.htm")
-  browser.setAttribute("style", "width:196px;padding-left:2px;padding-right:2px;height:100%");
+  browser.setAttribute("style", "width:100%;height:100%;padding:0;margin:0;overflow:hidden;");
   box.appendChild(browser);
+  browser.addEventListener("DOMContentLoaded", function injector() {
+    browser.contentWindow.toggle = function() {
+      if (box.style.height == "24px") {
+        box.style.height = "200px";
+        box.style.width = "200px";
+        box.style.marginTop = "-200px";
+      } else {
+        box.style.height = "24px";
+        box.style.width = "100px";
+        box.style.marginTop = "0";
+      }
+    }
+  }, true);
 
   // to shrink, we would reduce the "height" and "margin-top" of "box" simultaneously
 
