@@ -6,38 +6,14 @@
 
   <script type="application/x-javascript" src="chrome://browserpinnedchats/content/browserPinnedChats.js"/>
 
-  <commandset id="mainCommandSet">
-    <command id="cmd_pinnedAdd" oncommand="addPinnedChat(event);" label="Add Pinned Chat"/>
-    <command id="cmd_pinnedRemove" oncommand="removePinnedChat(event);" label="Remove Pinned Chat"/>    
-  </commandset>
-
+  <!-- menu for quick testing -->
   <menupopup id="menu_ToolsPopup">
-    <menuitem id="pinnedchat-add"
-              command='cmd_pinnedAdd' />
-    <menuitem id="pinnedchat-remove"
-              command='cmd_pinnedRemove' />
+    <menuitem id="pinnedchat-add" oncommand="openChatWindow(event);" label="Add Pinned Chat"/>
   </menupopup>
 
-  <menupopup id="appmenu-popup">
-    <menuitem id="pinnedchat-add"
-              command='cmd_pinnedAdd' />
-    <menuitem id="pinnedchat-remove"
-              command='cmd_pinnedRemove' />
-  </menupopup>
-
-
-  <!-- the hbox that contains our chat windows -->
   <vbox id="appcontent">
-    <toolbar id="pinnedchat-toolbar" layer="true"
-      mousethrough="always"
-      style="-moz-appearance:none;transparent:true;opacity:1;margin-top:-24px;"
-      >
-      <hbox pack="end" id="pinnedchats" flex="1"
-        mousethrough="always"
-        style="height:24px;width:100%;opacity:1.0;padding-left:8px;-moz-box-pack:end"
-      >
-      </hbox>
+    <toolbar id="pinnedchat-toolbar" layer="true" mousethrough="always">
+      <hbox pack="end" id="pinnedchats" mousethrough="always" flex="1"/>
     </toolbar>
   </vbox>
-
 </overlay>
