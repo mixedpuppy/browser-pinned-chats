@@ -14,7 +14,7 @@
         <xul:toolbarbutton class="chat-toggle-button" oncommand="this.parentNode.parentNode.toggle();"/>
         <xul:toolbarbutton class="chat-close-button" oncommand="this.parentNode.parentNode.close();"/>
       </xul:hbox>
-      <xul:browser anonid="browser" flex="1" xbl:inherits="src"/>
+      <xul:browser anonid="browser" flex="1" xbl:inherits="src" type="content"/>
     </content>
     
     <implementation>
