@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<bindings id="chatBrowserBindings"
+    xmlns="http://www.mozilla.org/xbl"
+    xmlns:xbl="http://www.mozilla.org/xbl"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <binding id="chatbrowser" extends="xul:vbox">
+    <content orient="vertical">
+      <xul:hbox class="chat-titlebar">
+        <xul:image class="chat-status-icon" xbl:inherits="src=image"/>
+        <xul:label class="chat-title" flex="1" xbl:inherits="value=label,accesskey,crop"/>
+        <xul:toolbarbutton class="chat-toggle-button" oncommand="this.parentNode.parentNode.toggle();"/>
+        <xul:toolbarbutton class="chat-close-button" oncommand="this.parentNode.parentNode.close();"/>
+      </xul:hbox>
+      <xul:browser anonid="browser" flex="1" xbl:inherits="src"/>
+    </content>
+    
+    <implementation>
+      <field name="browser">
+        document.getAnonymousElementByAttribute(this, "anonid", "browser");
+      </field>
+      <method name="close">
+        <body><![CDATA[
+          this.parentNode.removeChild(this);
+        ]]></body>
+      </method>
+      <method name="toggle">
+        <body><![CDATA[
+          if (this.getAttribute("open") == "true")
+            this.removeAttribute("open");
+          else
+            this.setAttribute("open", "true");
+        ]]></body>
+      </method>
+    </implementation>
+    
+    <handlers>
+      <handler event="DOMTitleChanged" action="this.setAttribute('label', this.browser.contentTitle);"/>
+      <handler event="DOMContentLoaded">
+      <![CDATA[
+        this.setAttribute("label", this.browser.contentTitle);
+        let box = this;
+        Object.defineProperty(this.browser.contentWindow, "statusIcon", {
+          set: function(val) {
+            // TODO: sanitize the url
+            box.image = val;
+          }
+        });
+      ]]>
+      </handler>
+    </handlers>
+  </binding>
+
+</bindings>

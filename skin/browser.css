@@ -1,4 +1,87 @@
 
+chatbrowser {
+  -moz-binding: url("chrome://browserpinnedchats/content/chatbrowser.xml#chatbrowser");
+}
+
+.chat-status-icon {
+  max-height: 16px;
+  max-width: 16px;
+  margin: 4px;
+  padding: 0;
+  list-style-image: url("chrome://browser/skin/social/social.png");
+}
+
+chatbrowser > hbox > toolbarbutton {
+  -moz-appearance: none;
+  border: none !important;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: default;
+}
+
+chatbrowser > hbox > toolbarbutton > .toolbarbutton-text {
+  display: none;
+}
+
+.chat-close-button {
+  list-style-image: url("chrome://global/skin/icons/close.png");
+  -moz-image-region: rect(0, 16px, 16px, 0);
+}
+
+.chat-close-button:hover {
+  -moz-image-region: rect(0, 32px, 16px, 16px);
+}
+
+.chat-close-button:hover:active {
+  -moz-image-region: rect(0, 48px, 16px, 32px);
+}
+
+
+.chat-toggle-button {
+  list-style-image: url("chrome://global/skin/icons/checkbox.png");
+  -moz-image-region: rect(0, 16px, 16px, 0);
+}
+
+.chat-toggle-button:hover {
+  -moz-image-region: rect(0, 32px, 16px, 16px);
+}
+
+chatbrowser[open="true"] > hbox > .chat-toggle-button {
+  -moz-image-region: rect(0, 32px, 16px, 16px);
+}
+
+chatbrowser[open="true"] > hbox > .chat-toggle-button:hover {
+  -moz-image-region: rect(0, 16px, 16px, 0);
+}
+
+.chat-title {
+  font-weight: bold;
+   color: -moz-dialogtext;
+}
+
+chatbrowser > hbox {
+  background: -moz-linear-gradient(white, #ddd);
+  height: 24px;
+  width: 100%;
+  margin: 0;
+  padding: 2px;
+  border: none;
+}
+
+chatbrowser[open="true"] > hbox {
+  border-bottom: 1px solid #404040;
+}
+
+chatbrowser > browser {
+  width:100%;
+  height:100%;
+  padding:0;
+  margin:0;
+  overflow:hidden;
+}
+
+
 #pinnedchat-toolbar {
   -moz-appearance: none;
   transparent: true;
@@ -16,7 +99,7 @@
   -moz-box-pack: end;
 }
 
-#pinnedchats > hbox {
+#pinnedchats > chatbrowser {
   width: 100px;
   height: 24px;
   background-color: white;
@@ -25,15 +108,7 @@
   margin: -5px -1px 0 0;
 }
 
-#pinnedchats > hbox > browser {
-  width:100%;
-  height:100%;
-  padding:0;
-  margin:0;
-  overflow:hidden;
-}
-
-#pinnedchats > hbox[open="true"] {
+#pinnedchats > chatbrowser[open="true"] {
   width:200px;
   height:200px;
   margin-top:-200px;
